@@ -1,4 +1,4 @@
-﻿# mkdoc
+﻿# mkdoc [![Build status](https://ci.appveyor.com/api/projects/status/61kyx64nk6gnqpk0?svg=true)](https://ci.appveyor.com/project/tischda/mkdoc)
 
 Windows utility written in [Go](https://www.golang.org) to generate documentation with Pandoc.
 
