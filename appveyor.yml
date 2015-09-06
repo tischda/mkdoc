@@ -19,7 +19,9 @@ install:
   - go get -u github.com/tischda/go2xunit
 
 build_script:
+  - git describe --tags
   - for /f "delims=" %%a in ('git describe --tags') do @set version=%%a
+  - echo %version%
   - ps: Update-AppveyorBuild -Version $env:version
   - go build -ldflags "-X main.version=%version% -s"
 
