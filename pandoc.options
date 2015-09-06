@@ -1,0 +1,21 @@
+# pandoc variable values cannot contain spaces because double quotes are
+# escaped by syscall.EscapeArg() in the exec.Command.Run() implementation
+#   date="v0.1-2-g82f6717 gen. 2015.08.28 - 09:04:59"
+# becomes:
+#   date=\"v0.1-2-g82f6717 gen. 2015.08.28 - 09:04:59\"
+# and this fails on the pandoc command line.
+#
+# a workaround is to use '~' (unbreakable space in LaTeX)
+# http:#tex.stackexchange.com/questions/74353/what-commands-are-there-for-horizontal-spacing
+
+--from=markdown+yaml_metadata_block
+--listings
+--number-sections
+-V papersize:a4paper
+-V geometry:margin=1in
+
+# Document header will contain git tag and current time stamp
+-V date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
+
+# Target is the output file name read from the 'metadata.yaml' target property
+-o out/{{.Target}}
