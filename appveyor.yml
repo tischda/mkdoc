@@ -15,6 +15,7 @@ install:
   - go version
   - go env
   - mkdir %GOPATH%
+  - go get -u gopkg.in/yaml.v2
   - go get -u github.com/tischda/go2xunit
 
 build_script:

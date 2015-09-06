@@ -7,6 +7,7 @@ Windows utility written in [Go](https://www.golang.org) to generate documentatio
 
 Dependencies:
 
+* `gopkg.in/yaml.v2`
 * [Pandoc](https://github.com/jgm/pandoc/releases) 1.15.0.6
 * [MiKTEX](http://miktex.org/download) 2.9.5721
 
