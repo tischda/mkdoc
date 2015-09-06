@@ -1,0 +1,40 @@
+branches:
+  only:
+    - master
+
+os: Windows Server 2012 R2
+
+environment:
+  GOPATH: c:\gopath
+
+init:
+  - SET PATH=%GOPATH%\bin;%PATH%
+  - git config --global core.autocrlf input
+
+install:
+  - go version
+  - go env
+  - mkdir %GOPATH%
+  - go get -u github.com/tischda/go2xunit
+
+build_script:
+  - for /f "delims=" %%a in ('git describe --tags') do @set version=%%a
+  - ps: Update-AppveyorBuild -Version $env:version
+  - go build -ldflags "-X main.version=%version% -s"
+
+test_script:
+  - mkdoc.exe -version
+  - go test -v -cover
+  - go test -v | go2xunit -xunitnet > xunit-report.xml
+
+artifacts:
+  - path: mkdoc.exe
+    name: mkdoc
+
+deploy: off
+
+on_finish:
+- ps: >-
+    If (Test-Path .\xunit-report.xml) {
+      (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\xunit-report.xml))
+    }
