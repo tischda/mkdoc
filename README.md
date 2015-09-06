@@ -34,7 +34,7 @@ Total time: 1.3935572s
 
 ### Configuration
 
-Pandoc configuration is done in `pandoc.options` file, for instance:
+Pandoc configuration is done in `pandoc.options` file (GO template), for instance:
 
 ~~~
 --from=markdown+yaml_metadata_block
@@ -52,9 +52,9 @@ Pandoc configuration is done in `pandoc.options` file, for instance:
 -o out/{{.Target}}
 ~~~
 
-The GO templates `{{.Tag}}`, `{{.Date}}`, `{{.Time}}` are set to current time by `mkdoc`.
+The placeholders `{{.Date}}`, `{{.Time}}` are set to current time by `mkdoc`.
 
-The GO template `{{.Target}}` is replaced by the value defined in `metadata.yaml`:
+The placeholder `{{.Target}}` is replaced by the value defined in `metadata.yaml`:
 
 ~~~
 target: my-document.pdf
