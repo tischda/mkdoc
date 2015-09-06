@@ -60,3 +60,5 @@ The placeholder `{{.Target}}` is replaced by the value defined in `metadata.yaml
 ~~~
 target: my-document.pdf
 ~~~
+
+The output directory must exist.
