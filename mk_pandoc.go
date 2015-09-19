@@ -57,7 +57,7 @@ func getGitTag() string {
 
 // return formatted date
 func formatDate(t time.Time) string {
-	return fmt.Sprintf("%d.%02d.%02d", t.Year(), t.Month(), t.Day())
+	return fmt.Sprintf("%02d.%02d.%d", t.Day(), t.Month(), t.Year())
 }
 
 // return formatted time

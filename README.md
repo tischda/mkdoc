@@ -17,17 +17,16 @@ go get github.com/tischda/mkdoc
 ### Usage
 
 Just run the `mkdoc` command in the project folder. This will take all `[0-9][0-9]*.md` files in ascending order
-as input for pandoc (I'm ususally using one file per chapter).
+as input to pandoc (I'm ususally using one file per chapter).
 
 Example:
 
 ~~~
 $ mkdoc
-Running pandoc with options: [--from=markdown+yaml_metadata_block --listings
-    --number-sections --variable=papersize:a4paper --variable=geometry:margin=1in
-    --variable=date=v0.1-8-g3d1d1fe~gen.~2015.09.19~-~15:57:58
+Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --number-sections --variable=papersize:a4paper
+    --variable=geometry:margin=1in --variable=date=v0.1-10-g5b1e77b~gen.~19.09.2015~-~16:08:54
     -o out/my-document.pdf 01-first.md 02-second.md metadata.yaml]
-Total time: 954.582ms
+Total time: 962.6111ms
 ~~~
 
 

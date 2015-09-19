@@ -15,7 +15,7 @@ func TestFillTemplate(t *testing.T) {
 		Time: formatTime(tm),
 	}
 
-	expected := "date=0.1-5-g163fcad~gen.~1.01.01~-~00:00:00"
+	expected := "date=0.1-5-g163fcad~gen.~01.01.1~-~00:00:00"
 	actual := fillTemplate(template, meta)
 	checkEquals(t, expected, actual)
 }
