@@ -16,9 +16,10 @@ go get github.com/tischda/mkdoc
 
 ### Usage
 
-Just run the `mkdoc` command in the project folder.
+Just run the `mkdoc` command in the project folder. This will take all `[0-9][0-9]*.md` files in ascending order
+as input for pandoc (I'm ususally using one file per chapter).
 
-Examples:
+Example:
 
 ~~~
 $ mkdoc
