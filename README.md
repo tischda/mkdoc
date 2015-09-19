@@ -22,9 +22,11 @@ Examples:
 
 ~~~
 $ mkdoc
-Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --number-sections -V papersize:a4paper -V geometry:margin=1in -V date=v
-3~gen.~2015.09.02~-~15:04:22 -o out/my-document.pdf 01-first.md 02-second.md metadata.yaml]
-Total time: 1.3935572s
+Running pandoc with options: [--from=markdown+yaml_metadata_block --listings
+    --number-sections --variable=papersize:a4paper --variable=geometry:margin=1in
+    --variable=date=v0.1-8-g3d1d1fe~gen.~2015.09.19~-~15:57:58
+    -o out/my-document.pdf 01-first.md 02-second.md metadata.yaml]
+Total time: 954.582ms
 ~~~
 
 
