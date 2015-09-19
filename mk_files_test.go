@@ -7,10 +7,10 @@ func TestReadOptionsFile(t *testing.T) {
 --from=markdown+yaml_metadata_block
 --listings
 --number-sections
--V papersize:a4paper
--V geometry:margin=1in
+--variable=papersize:a4paper
+--variable=geometry:margin=1in
 
--V date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
+--variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
 -o out/{{.Target}}`
 

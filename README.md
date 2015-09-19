@@ -1,7 +1,6 @@
 ﻿# mkdoc [![Build status](https://ci.appveyor.com/api/projects/status/61kyx64nk6gnqpk0?svg=true)](https://ci.appveyor.com/project/tischda/mkdoc)
 
-Windows utility written in [Go](https://www.golang.org) to generate documentation with Pandoc.
-
+Wrapper around pandoc written in [Go](https://www.golang.org) to use a templatable options file.
 
 ### Install
 
@@ -9,7 +8,7 @@ Dependencies:
 
 * `gopkg.in/yaml.v2`
 * [Pandoc](https://github.com/jgm/pandoc/releases) 1.15.0.6
-* [MiKTEX](http://miktex.org/download) 2.9.5721
+* LaTeX, on Windows: [MiKTEX](http://miktex.org/download) 2.9.5721
 
 ~~~
 go get github.com/tischda/mkdoc
@@ -17,11 +16,7 @@ go get github.com/tischda/mkdoc
 
 ### Usage
 
-~~~
-Usage of mkdoc:
-  -version
-        print version and exit
-~~~
+Just run the `mkdoc` command in the project folder.
 
 Examples:
 
@@ -38,18 +33,19 @@ Total time: 1.3935572s
 Pandoc configuration is done in `pandoc.options` file (GO template), for instance:
 
 ~~~
+# Common pandoc options
 --from=markdown+yaml_metadata_block
 --listings
 --number-sections
 --table-of-contents
 --toc-depth=2
--V papersize:a4paper
--V geometry:margin=1in
+--variable=papersize:a4paper
+--variable=geometry:margin=1in
 
 # Document header will contain git tag and current time stamp
--V date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
+--variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
-# Target is the output file name read from the 'metadata.yaml' target property
+# Target is the output file name specified in the 'metadata.yaml' target property
 -o out/{{.Target}}
 ~~~
 
@@ -61,4 +57,4 @@ The placeholder `{{.Target}}` is replaced by the value defined in `metadata.yaml
 target: my-document.pdf
 ~~~
 
-The output directory must exist.
+Note that the `out` directory specified after `-o` in the options file must exist.
