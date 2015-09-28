@@ -55,7 +55,7 @@ func readOptionsFile(name string) string {
 // rename file
 func renameFile(from, to string) {
 	if from != to {
-		fmt.Printf("%s --> %s\n", from, to)
+		fmt.Printf("  %s --> %s\n", from, to)
 		err := os.Rename(from, to)
 		checkFatal(err)
 	}

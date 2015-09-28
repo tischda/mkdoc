@@ -18,6 +18,7 @@ func renumberFiles() {
 		message := fmt.Sprintf("Too many files: %d (max %d)", len(inputFiles), MAX_FILES)
 		log.Fatal(message)
 	}
+	fmt.Println("Renumbering files...")
 	newNames, twoStep := compileNewNames(inputFiles)
 	for from, to := range newNames {
 		renameFile(from, to)
@@ -29,6 +30,7 @@ func renumberFiles() {
 			renameFile(from, to)
 		}
 	}
+	fmt.Println("")
 }
 
 // Renumber file names sequentially. Returns a mapping between source file names

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"testing"
 	"os"
+	"testing"
 )
 
 func TestReadOptionsFile(t *testing.T) {
@@ -23,6 +23,7 @@ func TestReadOptionsFile(t *testing.T) {
 
 func TestMarkdownInputFiles(t *testing.T) {
 	expected := []string{
+		"00-first.md",
 		"01-first.md",
 		"02-second.md",
 	}
