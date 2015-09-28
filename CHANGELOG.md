@@ -1,6 +1,6 @@
 ## Changelog
 
-##### mkdoc 1.1.0 - (28 September 2015)
+##### mkdoc 1.1.1 - (28 September 2015)
 
     * Add --check [img] to check for orphan images
     * Add --noop to skip pandoc execution
