@@ -29,6 +29,17 @@ Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --n
 Total time: 962.6111ms
 ~~~
 
+Options:
+
+~~~
+Usage of mkdoc:
+  -check string
+        check image directory for orphans
+  -renumber
+        renumber markdown source files
+  -version
+        print version and exit
+~~~
 
 ### Configuration
 
