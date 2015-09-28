@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-const SUFFIX = ".$$"
+const SUFFIX = ".$$.md"
 const MAX_FILES = 99
 
 // Reorder files on disk. Expects a list of files with format "[0-9][0-9]*.md".
