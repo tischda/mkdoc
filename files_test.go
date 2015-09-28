@@ -15,6 +15,14 @@ func TestReadOptionsFile(t *testing.T) {
 
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
+--variable=day={{.Day}}
+--variable=month={{.Month}}
+--variable=year={{.Year}}
+
+--variable=hour={{.Hour}}
+--variable=minute={{.Minute}}
+--variable=second={{.Second}}
+
 -o {{.Target}}`
 
 	actual := readOptionsFile("test/pandoc.options")
