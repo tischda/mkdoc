@@ -13,7 +13,7 @@ const MAX_FILES = 99
 // Renaming may require a two step process if renaming would overwrite files.
 // This case is handled by adding a suffix and renaming twice.
 func renumberFiles() {
-	inputFiles := getMarkdownFileList()
+	inputFiles := fs.getMarkdownFileList()
 	if len(inputFiles) > MAX_FILES {
 		message := fmt.Sprintf("Too many files: %d (max %d)", len(inputFiles), MAX_FILES)
 		log.Fatal(message)
@@ -21,13 +21,13 @@ func renumberFiles() {
 	fmt.Println("Renumbering files")
 	newNames, twoStep := compileNewNames(inputFiles)
 	for from, to := range newNames {
-		renameFile(from, to)
+		fs.renameFile(from, to)
 	}
 	if twoStep {
 		// now names are unique, remove suffix and ignore twoStep
-		newNames, _ = compileNewNames(getMarkdownFileList())
+		newNames, _ = compileNewNames(fs.getMarkdownFileList())
 		for from, to := range newNames {
-			renameFile(from, to)
+			fs.renameFile(from, to)
 		}
 	}
 	fmt.Println("")

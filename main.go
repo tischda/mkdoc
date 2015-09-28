@@ -12,11 +12,13 @@ var version string
 
 // command line flags
 var showVersion bool
+var noop bool
 var withRenumber bool
 var imgCheckDir string
 
 func init() {
 	flag.BoolVar(&showVersion, "version", false, "print version and exit")
+	flag.BoolVar(&noop, "noop", false, "show what would be done, don't execute")
 	flag.BoolVar(&withRenumber, "renumber", false, "renumber markdown source files")
 	flag.StringVar(&imgCheckDir, "check", "", "check image directory for orphans")
 }

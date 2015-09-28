@@ -25,7 +25,7 @@ func runPandoc() {
 	pandocOptions := readOptionsFile(optionsFileName)
 	options := strings.Fields(fillMeta(pandocOptions))
 
-	inputFiles := getMarkdownFileList()
+	inputFiles := fs.getMarkdownFileList()
 	inputFiles = append(inputFiles, metadataFileName)
 	options = append(options, inputFiles...)
 
