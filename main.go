@@ -18,7 +18,7 @@ var imgCheckDir string
 
 func init() {
 	flag.BoolVar(&showVersion, "version", false, "print version and exit")
-	flag.BoolVar(&noop, "noop", false, "show what would be done, don't execute")
+	flag.BoolVar(&noop, "noop", false, "don't execute pandoc (show options)")
 	flag.BoolVar(&withRenumber, "renumber", false, "renumber markdown source files")
 	flag.StringVar(&imgCheckDir, "check", "", "check image directory for orphans")
 }

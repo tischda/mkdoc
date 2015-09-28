@@ -35,6 +35,8 @@ Options:
 Usage of mkdoc:
   -check string
         check image directory for orphans
+  -noop
+        don't execute pandoc (show options)
   -renumber
         renumber markdown source files
   -version
