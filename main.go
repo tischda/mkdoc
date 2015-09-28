@@ -13,10 +13,12 @@ var version string
 // command line flags
 var showVersion bool
 var withRenumber bool
+var imgCheckDir string
 
 func init() {
 	flag.BoolVar(&showVersion, "version", false, "print version and exit")
-	flag.BoolVar(&withRenumber, "r", false, "renumber/rename source files")
+	flag.BoolVar(&withRenumber, "renumber", false, "renumber/rename source files")
+	flag.StringVar(&imgCheckDir, "check", "", "check image directory for orphans")
 }
 
 func main() {
@@ -26,10 +28,12 @@ func main() {
 	if showVersion {
 		fmt.Println("mkdoc version", version)
 	} else {
+		if imgCheckDir != "" {
+			listOrphans()
+		}
 		if withRenumber {
 			renumberFiles()
 		}
 		runPandoc()
 	}
 }
-

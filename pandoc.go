@@ -25,7 +25,7 @@ func runPandoc() {
 	pandocOptions := readOptionsFile(optionsFileName)
 	options := strings.Fields(fillMeta(pandocOptions))
 
-	inputFiles := getMarkdownInputFiles()
+	inputFiles := getMarkdownFileList()
 	inputFiles = append(inputFiles, metadataFileName)
 	options = append(options, inputFiles...)
 
@@ -38,7 +38,7 @@ func runPandoc() {
 // 		Date: 	current date
 // 		Time: 	current time
 func fillMeta(template string) string {
-	meta := readMeta(metadataFileName)
+	meta := readFileMetadata(metadataFileName)
 
 	meta.Tag = getGitTag()
 

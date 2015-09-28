@@ -13,25 +13,27 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// read metadata from file (we only need 'Target')
-func readMeta(fileName string) *metadata {
-	meta := &metadata{}
-	yaml.Unmarshal(readFile(fileName), meta)
-	return meta
-}
-
-// return file contents as array of bytes
-func readFile(name string) []byte {
-	data, err := ioutil.ReadFile(name)
-	checkFatal(err)
-	return data
-}
-
 // get sorted list of Markdown input files from current directory
-func getMarkdownInputFiles() []string {
+func getMarkdownFileList() []string {
 	fileList, _ := filepath.Glob("[0-9][0-9]*.md")
 	sort.Strings(fileList)
 	return fileList
+}
+
+// get list of files in directory
+func getFileListInDir(dirName string) []string {
+	dir, err := os.Open(dirName)
+	checkFatal(err)
+	fileNames, err := dir.Readdirnames(-1)
+	checkFatal(err)
+	return fileNames
+}
+
+// read metadata from file (we only need 'Target')
+func readFileMetadata(fileName string) *metadata {
+	meta := &metadata{}
+	yaml.Unmarshal(readFile(fileName), meta)
+	return meta
 }
 
 // return file contents as string, but discard lines starting with '#'
@@ -50,6 +52,24 @@ func readOptionsFile(name string) string {
 	}
 	checkFatal(scanner.Err())
 	return strings.Join(lines, "\n")
+}
+
+// read all files into a single string
+func mergeFilesToBuffer() string {
+	inputFiles := getMarkdownFileList()
+	var buffer []byte
+	for _, path := range inputFiles {
+		data := readFile(path)
+		buffer = append(buffer, data...)
+	}
+	return string(buffer)
+}
+
+// return file contents as array of bytes
+func readFile(name string) []byte {
+	data, err := ioutil.ReadFile(name)
+	checkFatal(err)
+	return data
 }
 
 // rename file
