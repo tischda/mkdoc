@@ -12,9 +12,11 @@ var version string
 
 // command line flags
 var showVersion bool
+var withRenumber bool
 
 func init() {
 	flag.BoolVar(&showVersion, "version", false, "print version and exit")
+	flag.BoolVar(&withRenumber, "r", false, "renumber/rename source files")
 }
 
 func main() {
@@ -24,6 +26,10 @@ func main() {
 	if showVersion {
 		fmt.Println("mkdoc version", version)
 	} else {
+		if withRenumber {
+			renumberFiles()
+		}
 		runPandoc()
 	}
 }
+

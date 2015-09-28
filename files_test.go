@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"testing"
+	"os"
+)
 
 func TestReadOptionsFile(t *testing.T) {
 	expected := `
@@ -12,9 +15,9 @@ func TestReadOptionsFile(t *testing.T) {
 
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
--o out/{{.Target}}`
+-o {{.Target}}`
 
-	actual := readOptionsFile("pandoc.options")
+	actual := readOptionsFile("test/pandoc.options")
 	checkEquals(t, expected, actual)
 }
 
@@ -23,6 +26,7 @@ func TestMarkdownInputFiles(t *testing.T) {
 		"01-first.md",
 		"02-second.md",
 	}
+	os.Chdir("test")
 	actual := getMarkdownInputFiles()
 	checkDeepEquals(t, expected, actual)
 }

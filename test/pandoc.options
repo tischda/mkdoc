@@ -19,4 +19,4 @@
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
 # Target is the output file name specified in the 'metadata.yaml' target property
--o out/{{.Target}}
+-o {{.Target}}

@@ -2,12 +2,15 @@ package main
 
 import (
 	"bufio"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"fmt"
+
+	"gopkg.in/yaml.v2"
 )
 
 // read metadata from file (we only need 'Target')
@@ -26,14 +29,7 @@ func readFile(name string) []byte {
 
 // get sorted list of Markdown input files from current directory
 func getMarkdownInputFiles() []string {
-	fileList := []string{}
-	filepath.Walk(".", func(path string, f os.FileInfo, err error) error {
-		matched, err := filepath.Match("[0-9][0-9]*.md", f.Name())
-		if matched {
-			fileList = append(fileList, path)
-		}
-		return err
-	})
+	fileList, _ := filepath.Glob("[0-9][0-9]*.md")
 	sort.Strings(fileList)
 	return fileList
 }
@@ -54,4 +50,13 @@ func readOptionsFile(name string) string {
 	}
 	checkFatal(scanner.Err())
 	return strings.Join(lines, "\n")
+}
+
+// rename file
+func renameFile(from, to string) {
+	if from != to {
+		fmt.Printf("%s --> %s\n", from, to)
+		err := os.Rename(from, to)
+		checkFatal(err)
+	}
 }
