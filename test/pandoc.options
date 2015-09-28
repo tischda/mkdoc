@@ -18,5 +18,14 @@
 # Document header will contain git tag and current time stamp
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
+# Instead of {{.Date}} and {{.Time}}, you can use your own date format
+--variable=day={{.Day}}
+--variable=month={{.Month}}
+--variable=year={{.Year}}
+
+--variable=hour={{.Hour}}
+--variable=minute={{.Minute}}
+--variable=second={{.Second}}
+
 # Target is the output file name specified in the 'metadata.yaml' target property
 -o {{.Target}}

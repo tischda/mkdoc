@@ -17,7 +17,13 @@ type metadata struct {
 	Target string `yaml:"target"`
 	Tag    string
 	Date   string
+	Day    string
+	Month  string
+	Year   string
 	Time   string
+	Hour   string
+	Minute string
+	Second string
 }
 
 // read options and run pandoc on 99-filename.md files
@@ -45,6 +51,14 @@ func fillMeta(template string) string {
 	t := time.Now()
 	meta.Date = formatDate(t)
 	meta.Time = formatTime(t)
+
+	meta.Day = fmt.Sprintf("%02d", t.Day())
+	meta.Month = fmt.Sprintf("%02d", t.Month())
+	meta.Year = fmt.Sprintf("%02d", t.Year())
+
+	meta.Hour = fmt.Sprintf("%02d", t.Hour())
+	meta.Minute = fmt.Sprintf("%02d", t.Minute())
+	meta.Second = fmt.Sprintf("%02d", t.Second())
 
 	return fillTemplate(template, meta)
 }
