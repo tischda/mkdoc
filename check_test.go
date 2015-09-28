@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-func TestImageCheck(t *testing.T) {
+func TestCheckImageDirectory(t *testing.T) {
 	imgCheckDir = "test/img"
 	_, ok := allImagesUsed()
 	if ok {

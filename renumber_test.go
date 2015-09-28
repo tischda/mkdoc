@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestCompileNewNames(t *testing.T) {
+func TestRenumberFiles(t *testing.T) {
 
 	// standard case
 	testCase(t, map[string]string{
@@ -43,4 +43,3 @@ func testCase(t *testing.T, expected map[string]string) {
 		t.Errorf("Expected: %q, was: %q", expected, mfs.fileList)
 	}
 }
-
