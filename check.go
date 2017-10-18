@@ -20,7 +20,7 @@ func allImagesUsed() ([]string, bool) {
 	ok := true
 	orphans := []string{}
 	haystack := mergeFilesToBuffer()
-	images := getFileListInDir(imgCheckDir)
+	images := getFileListInDir(imgageDir)
 	for _, name := range images {
 		exp := regexp.MustCompile(name)
 		if !exp.MatchString(haystack) {

@@ -12,6 +12,7 @@ Dependencies:
 
 ~~~
 go get github.com/tischda/mkdoc
+govendor sync
 ~~~
 
 ### Usage
@@ -33,7 +34,7 @@ Options:
 
 ~~~
 Usage of mkdoc:
-  -check string
+  -check directory
         check image directory for orphans
   -noop
         don't execute pandoc (show options)
@@ -61,7 +62,7 @@ Pandoc configuration is done in `pandoc.options` file (GO template), for instanc
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
 # Target is the output file name specified in the 'metadata.yaml' target property
--o out/{{.Target}}
+-o build/{{.Target}}
 ~~~
 
 The placeholders `{{.Date}}`, `{{.Time}}` are set to current time by `mkdoc`.
@@ -72,4 +73,4 @@ The placeholder `{{.Target}}` is replaced by the value defined in `metadata.yaml
 target: my-document.pdf
 ~~~
 
-Note that the `out` directory specified after `-o` in the options file must exist.
+Note that the `build` directory specified after `-o` in the options file must exist.

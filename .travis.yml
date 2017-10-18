@@ -1,6 +1,6 @@
 language: go
 go:
-    - 1.6.2
+    - 1.9.1
 script:
     - make build
     - make test
