@@ -3,7 +3,9 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 	"text/template"
 	"time"
@@ -45,6 +47,15 @@ func runPandoc() {
 // 		Time: 	current time
 func fillMeta(template string) string {
 	meta := readFileMetadata(metadataFileName)
+
+	// make sure target path exists
+	path := filepath.Dir(meta.Target)
+	if path != "." {
+		if _, err := os.Stat(path); os.IsNotExist(err) && !noop {
+			fmt.Println("Creating target path:", path)
+			checkFatal(os.MkdirAll(path, os.ModePerm))
+		}
+	}
 
 	meta.Tag = getGitTag()
 
