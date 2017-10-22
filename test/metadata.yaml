@@ -10,5 +10,5 @@ abstract: |
     oblique molestie quo, aliquip sensibus cotidieque cum ut, modus nobis
     viderer cu has. Ex vitae delenit nec, error molestie partiendo quo ne. At
     altera labore repudiandae pro.
-target: my-document.pdf
+target: build/my-document.pdf
 ...

@@ -7,8 +7,8 @@ Wrapper around pandoc written in [Go](https://www.golang.org) to use a templatab
 Dependencies:
 
 * `gopkg.in/yaml.v2`
-* [Pandoc](https://github.com/jgm/pandoc/releases) 1.15.0.6
-* LaTeX, on Windows: [MiKTEX](http://miktex.org/download) 2.9.5721
+* [Pandoc](https://github.com/jgm/pandoc/releases) 1.19.1
+* LaTeX, on Windows: [MiKTEX](http://miktex.org/download) 2.9.x
 
 ~~~
 go get github.com/tischda/mkdoc
@@ -17,6 +17,9 @@ govendor sync
 
 ### Usage
 
+Your project folder should contain your Markdown files, a `metadata.yaml` frontmatter and a `pandoc.options`
+file (see the `test` directory for an example).
+
 Just run the `mkdoc` command in the project folder. This will take all `[0-9][0-9]*.md` files in ascending order
 as input to pandoc (I'm ususally using one file per chapter).
 
@@ -24,7 +27,8 @@ Example:
 
 ~~~
 $ mkdoc
-Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --number-sections --variable=papersize:a4paper
+Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --number-sections
+    --variable=papersize:a4paper
     --variable=geometry:margin=1in --variable=date=v0.1-10-g5b1e77b~gen.~19.09.2015~-~16:08:54
     -o out/my-document.pdf 01-first.md 02-second.md metadata.yaml]
 Total time: 962.6111ms
@@ -62,7 +66,7 @@ Pandoc configuration is done in `pandoc.options` file (GO template), for instanc
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
 # Target is the output file name specified in the 'metadata.yaml' target property
--o build/{{.Target}}
+-o {{.Target}}
 ~~~
 
 The placeholders `{{.Date}}`, `{{.Time}}` are set to current time by `mkdoc`.
@@ -70,7 +74,8 @@ The placeholders `{{.Date}}`, `{{.Time}}` are set to current time by `mkdoc`.
 The placeholder `{{.Target}}` is replaced by the value defined in `metadata.yaml`:
 
 ~~~
-target: my-document.pdf
+target: build/my-document.pdf
 ~~~
 
-Note that the `build` directory specified after `-o` in the options file must exist.
+Note that if the `build` directory is specified after `-o` in the options file,
+then it must exist (mkdoc only merges the template and does not interpret pandoc options).
