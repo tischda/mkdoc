@@ -30,7 +30,7 @@ $ mkdoc
 Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --number-sections
     --variable=papersize:a4paper
     --variable=geometry:margin=1in --variable=date=v0.1-10-g5b1e77b~gen.~19.09.2015~-~16:08:54
-    -o out/my-document.pdf 01-first.md 02-second.md metadata.yaml]
+    -o build/my-document.pdf 01-first.md 02-second.md metadata.yaml]
 Total time: 962.6111ms
 ~~~
 
