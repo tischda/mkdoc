@@ -5,7 +5,7 @@
 PROJECT_DIR=$(notdir $(shell pwd))
 
 BUILD_TAG=$(shell git describe --tags)
-LDFLAGS=-ldflags "-X main.version=${BUILD_TAG} -s -w"
+LDFLAGS=all=-ldflags "-X main.version=${BUILD_TAG} -s -w"
 
 all: get build
 
