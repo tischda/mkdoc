@@ -6,13 +6,11 @@ Wrapper around pandoc written in [Go](https://www.golang.org) to use a templatab
 
 Dependencies:
 
-* `gopkg.in/yaml.v2`
-* [Pandoc](https://github.com/jgm/pandoc/releases) 1.19.1
-* LaTeX, on Windows: [MiKTEX](http://miktex.org/download) 2.9.x
+* [Pandoc](https://github.com/jgm/pandoc/releases)
+* LaTeX, on Windows: [MiKTEX](http://miktex.org/download)
 
 ~~~
-go get github.com/tischda/mkdoc
-govendor sync
+go install github.com/tischda/mkdoc
 ~~~
 
 ### Usage
@@ -21,7 +19,7 @@ Your project folder should contain your Markdown files, a `metadata.yaml` frontm
 file (see the `test` directory for an example).
 
 Just run the `mkdoc` command in the project folder. This will take all `[0-9][0-9]*.md` files in ascending order
-as input to pandoc (I'm ususally using one file per chapter).
+as input to pandoc (I'm usually using one file per chapter).
 
 Example:
 
