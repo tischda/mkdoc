@@ -5,7 +5,6 @@ branches:
 image: Visual Studio 2019
 
 environment:
-  GO111MODULE: on
   GOPATH: C:\gopath
   GOPROXY: https://proxy.golang.org  
 
@@ -15,6 +14,7 @@ init:
 install:
   - go version
   - go env
+  - go install gopkg.in/yaml.v2@latest
   - go install github.com/tebeka/go2xunit@latest
 
 build_script:
