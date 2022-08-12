@@ -5,6 +5,7 @@ branches:
 image: Visual Studio 2019
 
 environment:
+  GO111MODULE: on
   GOPATH: C:\gopath
   GOPROXY: https://proxy.golang.org  
 
