@@ -8,11 +8,16 @@ import (
 func TestReadOptionsFile(t *testing.T) {
 	expected := `
 --from=markdown+yaml_metadata_block
---listings
+
+--highlight-style=tango
 --number-sections
+--top-level-division=chapter
+--listings
+--filter pandoc-citeproc
+--standalone
+--pdf-engine-opt=--miktex-admin
 --variable=papersize:a4paper
 --variable=geometry:margin=1in
-
 --variable=date={{.Tag}}~gen.~{{.Date}}~-~{{.Time}}
 
 --variable=day={{.Day}}
@@ -22,6 +27,8 @@ func TestReadOptionsFile(t *testing.T) {
 --variable=hour={{.Hour}}
 --variable=minute={{.Minute}}
 --variable=second={{.Second}}
+
+--to=latex+table_captions
 
 -o {{.Target}}`
 
