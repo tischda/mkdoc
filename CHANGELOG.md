@@ -1,5 +1,10 @@
 ## Changelog
 
+##### mkdoc 1.2.X - (?)
+
+	* Use go modules
+	* Update appveyor configuration
+
 ##### mkdoc 1.2.0 - (18 October 2017)
 
 	* Create output directory if not present

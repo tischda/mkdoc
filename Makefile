@@ -1,35 +1,32 @@
 # ---------------------------------------------------------------------------
-# Makefile for mkdoc
+# Makefile for GO utilities
 # ---------------------------------------------------------------------------
 
 PROJECT_DIR=$(notdir $(shell pwd))
 
 BUILD_TAG=$(shell git describe --tags)
-LDFLAGS=all=-ldflags "-X main.version=${BUILD_TAG} -s -w"
+LDFLAGS=-ldflags=all="-X main.version=${BUILD_TAG} -s -w"
 
-all: get build
+all: build
 
 build:
-	go build ${LDFLAGS}
+	go build -mod vendor ${LDFLAGS}
 
 get:
-	govendor sync
+	go get
 
-test: clean vet
-	govendor test -v -cover
+test:
+	go test -mod vendor -v -cover
 
 cover:
-	govendor test -coverprofile=coverage.out +local
+	go test -coverprofile=coverage.out
 	go tool cover -html=coverage.out
 
 fmt:
-	govendor fmt +local
-
-vet:
-	govendor vet -v +local
+	go fmt
 
 install:
-	go install ${LDFLAGS}
+	go install ${LDFLAGS} ./...
 
 dist: clean build
 	upx -9 ${PROJECT_DIR}.exe

@@ -14,15 +14,12 @@ init:
 install:
   - go version
   - go env
-  - go install gopkg.in/yaml.v2
   - go install github.com/tebeka/go2xunit@latest
 
 build_script:
-  - git describe --tags
   - for /f "delims=" %%a in ('git describe --tags') do @set version=%%a
-  - echo %version%
   - ps: Update-AppveyorBuild -Version $env:version
-  - go build -ldflags "all=-X main.version=%version% -s"
+  - go build -mod vendor -ldflags=all="-X main.version=%version% -s -w"
 
 test_script:
   - mkdoc.exe -version
