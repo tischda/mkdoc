@@ -5,7 +5,7 @@ import "sort"
 // return list of sorted keys from map
 func getSortedKeys(mymap map[string]string) []string {
 	keys := make([]string, 0, len(mymap))
-	for k, _ := range mymap {
+	for k := range mymap {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)

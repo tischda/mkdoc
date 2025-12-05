@@ -12,7 +12,6 @@ import (
 	"time"
 )
 
-const dateFormat = "%d.%02d.%02d~-~%02d:%02d:%02d"
 const metadataFileName = `metadata.yaml`
 const optionsFileName = `pandoc.options`
 

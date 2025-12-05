@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"sort"
 	"strings"
 
 	"gopkg.in/yaml.v3"
@@ -15,18 +16,21 @@ func getFileListInDir(dirName string) []string {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	defer dir.Close()
+	defer dir.Close() // nolint:errcheck
 	fileNames, err := dir.Readdirnames(-1)
 	if err != nil {
 		log.Fatalln(err)
 	}
+	sort.Strings(fileNames)
 	return fileNames
 }
 
 // read metadata from pandoc yaml header file
 func readFileMetadata(fileName string) *metadata {
 	meta := &metadata{}
-	yaml.Unmarshal(fs.readFile(fileName), meta)
+	if err := yaml.Unmarshal(fs.readFile(fileName), meta); err != nil {
+		log.Fatalln(err)
+	}
 	return meta
 }
 
@@ -36,7 +40,7 @@ func readOptionsFile(name string) string {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	defer file.Close()
+	defer file.Close() // nolint:errcheck
 
 	lines := []string{}
 	scanner := bufio.NewScanner(file)
