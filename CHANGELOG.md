@@ -2,7 +2,7 @@
 
 ## [v1.2.1] - 05 December 2025
 
-* Update build system
+* Update build system and dependencies
 
 ## [v1.2.0] - 18 October 2017
 

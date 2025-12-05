@@ -1,9 +1,9 @@
-﻿[![Build Status](https://github.com/tischda/peekenv/actions/workflows/build.yml/badge.svg)](https://github.com/tischda/peekenv/actions/workflows/build.yml)
-[![Test Status](https://github.com/tischda/peekenv/actions/workflows/test.yml/badge.svg)](https://github.com/tischda/peekenv/actions/workflows/test.yml)
-[![Coverage Status](https://coveralls.io/repos/tischda/peekenv/badge.svg)](https://coveralls.io/r/tischda/peekenv)
-[![Linter Status](https://github.com/tischda/peekenv/actions/workflows/linter.yml/badge.svg)](https://github.com/tischda/peekenv/actions/workflows/linter.yml)
-[![License](https://img.shields.io/github/license/tischda/peekenv)](/LICENSE)
-[![Release](https://img.shields.io/github/release/tischda/peekenv.svg)](https://github.com/tischda/peekenv/releases/latest)
+﻿[![Build Status](https://github.com/tischda/mkdoc/actions/workflows/build.yml/badge.svg)](https://github.com/tischda/mkdoc/actions/workflows/build.yml)
+[![Test Status](https://github.com/tischda/mkdoc/actions/workflows/test.yml/badge.svg)](https://github.com/tischda/mkdoc/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/tischda/mkdoc/badge.svg)](https://coveralls.io/r/tischda/mkdoc)
+[![Linter Status](https://github.com/tischda/mkdoc/actions/workflows/linter.yml/badge.svg)](https://github.com/tischda/mkdoc/actions/workflows/linter.yml)
+[![License](https://img.shields.io/github/license/tischda/mkdoc)](/LICENSE)
+[![Release](https://img.shields.io/github/release/tischda/mkdoc.svg)](https://github.com/tischda/mkdoc/releases/latest)
 
 # mkdoc
 
@@ -22,13 +22,30 @@ go install github.com/tischda/mkdoc@latest
 
 ## Usage
 
-Your project folder should contain your Markdown files, a `metadata.yaml` frontmatter and a `pandoc.options`
-file (see the `test` directory for an example).
+Your project folder should contain your Markdown files, a `metadata.yaml` frontmatter
+and a `pandoc.options` file (see the `test` directory for an example).
 
-Just run the `mkdoc` command in the project folder. This will take all `[0-9][0-9]*.md` files in ascending order
-as input to pandoc (I'm usually using one file per chapter).
+Just run the `mkdoc` command in the project folder. This will take all `[0-9][0-9]*.md` files in ascending order as input to pandoc (I'm usually using one file per chapter).
 
-Example:
+~~~
+Usage: mkdoc [OPTIONS]
+
+Wrapper around pandoc to use a templatable options file.
+
+OPTIONS:
+  -c, --check <dir>
+          check image directory for orphans
+  -n, --noop
+          don't execute pandoc (show options)
+  -r, --renumber
+          renumber markdown source files
+  -?, --help
+          display this help message
+  -v, --version
+          print version and exit
+~~~
+
+## Examples
 
 ~~~
 $ mkdoc
@@ -37,20 +54,6 @@ Running pandoc with options: [--from=markdown+yaml_metadata_block --listings --n
     --variable=geometry:margin=1in --variable=date=v0.1-10-g5b1e77b~gen.~19.09.2015~-~16:08:54
     -o build/my-document.pdf 01-first.md 02-second.md metadata.yaml]
 Total time: 962.6111ms
-~~~
-
-Options:
-
-~~~
-Usage of mkdoc:
-  -check directory
-        check image directory for orphans
-  -noop
-        don't execute pandoc (show options)
-  -renumber
-        renumber markdown source files
-  -version
-        print version and exit
 ~~~
 
 ## Configuration

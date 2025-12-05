@@ -58,12 +58,7 @@ OPTIONS:
           display this help message
   -v, --version
           print version and exit
-
-EXAMPLES:`)
-
-		fmt.Fprintln(os.Stderr, "\n  $ "+name+` --noop
-		
-	Example output here...`)
+`)
 	}
 	flag.Parse()
 
