@@ -9,7 +9,7 @@ import (
 )
 
 // Executes process and print elapsed time.
-func executeProcess(command string, args ...string) {
+func executeProcess(command string, noop bool, args ...string) {
 	defer whenDone()()
 	if noop {
 		fmt.Printf("Execution skipped: %s with options: %s\n", command, append([]string{}, args...))
@@ -18,7 +18,9 @@ func executeProcess(command string, args ...string) {
 		cmd := exec.Command(command, args...)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
-		checkFatal(cmd.Run())
+		if err := cmd.Run(); err != nil {
+			log.Fatalln(err)
+		}
 	}
 }
 
@@ -27,12 +29,5 @@ func whenDone() func() {
 	start := time.Now()
 	return func() {
 		fmt.Printf("Total time: %v\n", time.Since(start))
-	}
-}
-
-// Prints error and exit if err != nil
-func checkFatal(err error) {
-	if err != nil {
-		log.Fatalln(err)
 	}
 }

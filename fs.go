@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"sort"
@@ -31,14 +31,17 @@ func (*realFileSystem) getMarkdownFileList() []string {
 func (*realFileSystem) renameFile(from, to string) {
 	if from != to {
 		fmt.Printf("  %s --> %s\n", from, to)
-		err := os.Rename(from, to)
-		checkFatal(err)
+		if err := os.Rename(from, to); err != nil {
+			log.Fatalln(err)
+		}
 	}
 }
 
 // return file contents as array of bytes
 func (*realFileSystem) readFile(name string) []byte {
-	data, err := ioutil.ReadFile(name)
-	checkFatal(err)
+	data, err := os.ReadFile(name)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	return data
 }

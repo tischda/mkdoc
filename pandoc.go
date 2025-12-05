@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -29,23 +30,24 @@ type metadata struct {
 }
 
 // read options and run pandoc on 99-filename.md files
-func runPandoc() {
+func runPandoc(noop bool) {
 	pandocOptions := readOptionsFile(optionsFileName)
-	options := strings.Fields(fillMeta(pandocOptions))
+	options := strings.Fields(fillMeta(pandocOptions, noop))
 
 	inputFiles := fs.getMarkdownFileList()
 	inputFiles = append(inputFiles, metadataFileName)
 	options = append(options, inputFiles...)
 
-	executeProcess("pandoc", options...)
+	executeProcess("pandoc", noop, options...)
 }
 
 // fill pandoc options template with document metadata
-// 		Target: obtained from 'metadata.yaml'
-// 		Tag: 	'git describe --tags'
-// 		Date: 	current date
-// 		Time: 	current time
-func fillMeta(template string) string {
+//
+//	Target: obtained from 'metadata.yaml'
+//	Tag: 	'git describe --tags'
+//	Date: 	current date
+//	Time: 	current time
+func fillMeta(template string, noop bool) string {
 	meta := readFileMetadata(metadataFileName)
 
 	// make sure target path exists
@@ -53,7 +55,9 @@ func fillMeta(template string) string {
 	if path != "." {
 		if _, err := os.Stat(path); os.IsNotExist(err) && !noop {
 			fmt.Println("Creating target path:", path)
-			checkFatal(os.MkdirAll(path, os.ModePerm))
+			if err := os.MkdirAll(path, os.ModePerm); err != nil {
+				log.Fatalln(err)
+			}
 		}
 	}
 
@@ -93,11 +97,13 @@ func formatTime(t time.Time) string {
 // fill text template with data
 func fillTemplate(text string, data interface{}) string {
 	template, err := template.New("test").Parse(text)
-	checkFatal(err)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	buff := bytes.NewBufferString("")
-	err = template.Execute(buff, data)
-	checkFatal(err)
-
+	if err = template.Execute(buff, data); err != nil {
+		log.Fatalln(err)
+	}
 	return buff.String()
 }

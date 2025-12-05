@@ -1,8 +1,15 @@
-﻿# mkdoc [![Build status](https://ci.appveyor.com/api/projects/status/61kyx64nk6gnqpk0?svg=true)](https://ci.appveyor.com/project/tischda/mkdoc)
+﻿[![Build Status](https://github.com/tischda/peekenv/actions/workflows/build.yml/badge.svg)](https://github.com/tischda/peekenv/actions/workflows/build.yml)
+[![Test Status](https://github.com/tischda/peekenv/actions/workflows/test.yml/badge.svg)](https://github.com/tischda/peekenv/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/tischda/peekenv/badge.svg)](https://coveralls.io/r/tischda/peekenv)
+[![Linter Status](https://github.com/tischda/peekenv/actions/workflows/linter.yml/badge.svg)](https://github.com/tischda/peekenv/actions/workflows/linter.yml)
+[![License](https://img.shields.io/github/license/tischda/peekenv)](/LICENSE)
+[![Release](https://img.shields.io/github/release/tischda/peekenv.svg)](https://github.com/tischda/peekenv/releases/latest)
 
-Wrapper around pandoc written in [Go](https://www.golang.org) to use a templatable options file.
+# mkdoc
 
-### Install
+Wrapper around pandoc to use a templatable options file.
+
+## Install
 
 Dependencies:
 
@@ -10,10 +17,10 @@ Dependencies:
 * LaTeX, on Windows: [MiKTEX](http://miktex.org/download)
 
 ~~~
-go install github.com/tischda/mkdoc
+go install github.com/tischda/mkdoc@latest
 ~~~
 
-### Usage
+## Usage
 
 Your project folder should contain your Markdown files, a `metadata.yaml` frontmatter and a `pandoc.options`
 file (see the `test` directory for an example).
@@ -46,7 +53,7 @@ Usage of mkdoc:
         print version and exit
 ~~~
 
-### Configuration
+## Configuration
 
 Pandoc configuration is done in `pandoc.options` file (GO template), for instance:
 
